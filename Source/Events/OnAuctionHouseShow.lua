@@ -1,5 +1,9 @@
 function Auctionator.Events.OnAuctionHouseShow()
   Auctionator.Debug.Message("Auctionator.Events.OnAuctionHouseShow")
+  print("In OnAuctionHouseShow")
+
+  local frame = CreateFrame("")
+  -- AuctionatorFrame:Show();
 
   Auctionator.FullScan.Initialize()
   Auctionator.FullScan.State.Completed = false

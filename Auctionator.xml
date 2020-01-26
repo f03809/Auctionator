@@ -39,4 +39,7 @@
   <Include file="UI/Frames/CancelAuctionConfirmation.xml" />
   <Include file="UI/Frames/FullScan.xml" />
   <Include file="UI/Frames/AdvancedSearchDialog.xml" />
+
+  <!-- 8.3 UI Components -->
+  <Include file="UI/ShoppingLists/Frame.xml" />
 </Ui>

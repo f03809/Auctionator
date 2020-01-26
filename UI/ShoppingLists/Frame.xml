@@ -1,0 +1,17 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Frame name="AuctionatorShoppingList" parent="AuctionHouseFrame" template="SimplePanelTemplate" hidden="true" virtual="true">
+    <Scripts>
+      <OnLoad>
+        Auctionator.ShoppingLists.Initialize()
+      </OnLoad>
+    </Scripts>
+
+    <Size x="300" y="538" />
+
+    <Anchors>
+      <Anchor relativeTo="$parent">
+
+      </Anchor>
+    </Anchors>
+  </Frame>
+</Ui>

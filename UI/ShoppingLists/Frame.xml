@@ -1,17 +1,220 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-  <Frame name="AuctionatorShoppingList" parent="AuctionHouseFrame" template="SimplePanelTemplate" hidden="true" virtual="true">
-    <Scripts>
-      <OnLoad>
-        Auctionator.ShoppingLists.Initialize()
-      </OnLoad>
-    </Scripts>
+  <Frame name="AuctionatorAHFrame" inherits="SimplePanelTemplate" parent="UIParent" hidden="true">
+    <Size x="500" />
 
-    <Size x="300" y="538" />
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString inherits="GameFontNormal" text="Auctionator">
+          <Anchors>
+            <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+              <Offset>
+                <AbsDimension x="0" y="-10"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+
+    <Frames>
+      <!-- Shopping List Dropdown -->
+      <Frame inherits="UIDropDownMenuTemplate" name="$parentListDropDown">
+        <Size>
+          <AbsDimension x="400" y="20" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+            <Offset>
+              <AbsDimension x="0" y="-30"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnLoad function="Auctionator.ShoppingLists.LoadListDropdown" />
+        </Scripts>
+      </Frame>
+
+      <!-- List Editing Buttons -->
+      <Button inherits="UIPanelDynamicResizeButtonTemplate" name="$parentCreateList" text="Create List">
+        <Anchors>
+          <Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="3" y="3" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+
+      <Button inherits="UIPanelDynamicResizeButtonTemplate" name="$parentAddItem" text="Add Item">
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parentCreateList" relativePoint="RIGHT">
+            <Offset>
+              <AbsDimension x="3" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+
+      <Button inherits="UIPanelDynamicResizeButtonTemplate" name="$parentRemoveItem" text="Remove Item">
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parentAddItem" relativePoint="RIGHT">
+            <Offset>
+              <AbsDimension x="3" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+
+
+      <Button inherits="UIPanelDynamicResizeButtonTemplate" name="$parentDeleteList" text="Delete List">
+        <Anchors>
+          <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+            <Offset>
+              <AbsDimension x="-3" y="3"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+      </Button>
+
+    </Frames>
+
+  </Frame>
+
+    <!-- <Frame name="AuctionatorShoppingList" inherits="SimplePanelTemplate" hidden="true" enableMouse="true" parent="UIParent">
+    <Size x="500" y="538" />
 
     <Anchors>
-      <Anchor relativeTo="$parent">
-
+      <Anchor point="CENTER">
+        <Offset>
+          <AbsDimension x="-200" y="200"/>
+        </Offset>
       </Anchor>
     </Anchors>
-  </Frame>
+    <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+      <BackgroundInsets>
+        <AbsInset left="11" right="12" top="12" bottom="11"/>
+      </BackgroundInsets>
+      <TileSize>
+        <AbsValue val="32"/>
+      </TileSize>
+      <EdgeSize>
+        <AbsValue val="32"/>
+      </EdgeSize>
+    </Backdrop>
+    <Layers>
+      <Layer level="ARTWORK">
+        <Texture name="myFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+          <Size>
+            <AbsDimension x="356" y="64"/>
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="0" y="12"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
+        <FontString inherits="GameFontNormal" text="My Frame">
+          <Anchors>
+            <Anchor point="TOP" relativeTo="myFrameHeader">
+              <Offset>
+                <AbsDimension x="0" y="-14"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <Frame name="myTabPage1" hidden="false">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+          <Anchor point="BOTTOMRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString inherits="GameFontNormal" text="My Frame 1">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-30"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames></Frames>
+      </Frame>
+      <Frame name="myTabPage2" hidden="true">
+        <Anchors>
+          <Anchor point="TOPLEFT"/>
+          <Anchor point="BOTTOMRIGHT"/>
+        </Anchors>
+        <Layers>
+          <Layer level="ARTWORK">
+            <FontString inherits="GameFontNormal" text="My Frame 2">
+              <Anchors>
+                <Anchor point="TOPLEFT" relativeTo="$parent">
+                  <Offset>
+                    <AbsDimension x="20" y="-30"/>
+                  </Offset>
+                </Anchor>
+              </Anchors>
+            </FontString>
+          </Layer>
+        </Layers>
+        <Frames></Frames>
+      </Frame>
+      <Button name="$parentTab1" inherits="CharacterFrameTabButtonTemplate" id="1" text="My Tab 1">
+        <Anchors>
+          <Anchor point="CENTER" relativePoint="BOTTOMLEFT">
+            <Offset>
+              <AbsDimension x="60" y="-12"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+                       PanelTemplates_SetTab(myTabContainerFrame, 1);
+                       myTabPage1:Show();
+                       myTabPage2:Hide();
+                   </OnClick>
+        </Scripts>
+      </Button>
+      <Button name="$parentTab2" inherits="CharacterFrameTabButtonTemplate" id="2" text="My Tab 2">
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT">
+            <Offset>
+              <AbsDimension x="-16" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+                       PanelTemplates_SetTab(myTabContainerFrame, 2);
+                       myTabPage1:Hide();
+                       myTabPage2:Show();
+                   </OnClick>
+        </Scripts>
+      </Button>
+    </Frames>
+    <Scripts>
+      <OnLoad>
+               this.elapsed = 0;
+               PanelTemplates_SetNumTabs(myTabContainerFrame, 2);
+               PanelTemplates_SetTab(myTabContainerFrame, 1);
+           </OnLoad>
+      <OnShow>
+               PlaySound(&quot;UChatScrollButton&quot;);
+               PanelTemplates_SetTab(myTabContainerFrame, 1);
+               myTabPage1:Show()
+               myTabPage2:Hide()
+           </OnShow>
+      <OnHide>
+               PlaySound(&quot;UChatScrollButton&quot;);
+           </OnHide>
+    </Scripts>
+  </Frame> -->
 </Ui>
